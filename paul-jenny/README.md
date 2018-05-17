@@ -30,6 +30,8 @@ This application is a blog, which communicates with a local server via Node.js.
 
 05-17-2018 9:32am - Installed and required pg.
 
+05-17-2018 9:32am - Server now communicating with DB and Client.
+
 ## Credits and Collaborations
 
 * Oscar Otero - [JQuery Quick API Reference](https://oscarotero.com/jquery/)
