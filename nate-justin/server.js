@@ -49,7 +49,7 @@ app.get('/articles', (request, response) => {
 
 app.post('/articles', (request, response) => {
   // DONE: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // This also part 3 of the full-stack-diagram. The server is making a query to the database. In this case, the query is to insert data into the database. This is called from insertRecord() in article.js, and is the CREATE part of CRUD.
+  // This also part 3 of the full-stack-diagram. The server is making a query to the database. In this case, the query is to insert data into the database. This is called from insertRecord() in article.js, and is the Create part of CRUD.
   let SQL = `
     INSERT INTO articles(title, author, "authorUrl", category, "publishedOn", body)
     VALUES ($1, $2, $3, $4, $5, $6);
@@ -75,7 +75,7 @@ app.post('/articles', (request, response) => {
 
 app.put('/articles/:id', (request, response) => {
   // DONE: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // This is part 3 of the full-stack-diagram. The server is querying the database in order to update the table. This functionality is called from updateRecord() in article.js, and is represented by UPDATE in CRUD.
+  // This is part 3 of the full-stack-diagram. The server is querying the database in order to update the table. This functionality is called from updateRecord() in article.js, and is represented by Update in CRUD.
 
   let SQL = 'UPDATE articles SET title=$2, author=$3, "authorUrl"=$4, category=$5, "publishedOn"=$6, body=$7 WHERE article_id=$1;';
   let values = [
