@@ -77,14 +77,15 @@ app.post('/articles', (request, response) => {
 app.put('/articles/:id', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
   // PUT YOUR RESPONSE HERE
-  let SQL = `UPDATE articles SET title = $1, author = $2, "authorUrl;" = $3, category = $4, "publishedOn" = $5, body = $6 WHERE article_id = ${request.path.split(':')[1]};`;
+  let SQL = `UPDATE articles SET title = $1, author = $2, "authorUrl" = $3, category = $4, "publishedOn" = $5, body = $6 WHERE article_id = $7`;
   let values = [
     request.body.title,
     request.body.author,
     request.body.authorUrl,
     request.body.category,
     request.body.publishedOn,
-    request.body.body
+    request.body.body,
+    request.params.id
   ];
 
   client.query( SQL, values )
