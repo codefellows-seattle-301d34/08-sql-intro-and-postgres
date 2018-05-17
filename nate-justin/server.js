@@ -9,7 +9,7 @@ const app = express();
 
 // Windows and Linux users: You should have retained the user/password from the pre-work for this course.
 // Your OS may require that your conString is composed of additional information including user and password.
-const conString = 'postgres://postgres:password@localhost:5432/DBNAME';
+const conString = 'postgres://postgres:password@localhost:5432/postgres';
 
 // Mac:
 // const conString = 'postgres://localhost:5432';
@@ -38,7 +38,7 @@ app.get('/new-article', (request, response) => {
 app.get('/articles', (request, response) => {
   // DONE: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
   // This get request is part 3 of the MVC diagram. The server is querying the database. This is perfomed when the view performs a get request with the path '/articles'. This is called from the fetchAll() method in article.js. This is the READ part of CRUD.
-  client.query('')
+  client.query('SELECT * FROM articles;')
     .then(function(result) {
       response.send(result.rows);
     })
@@ -77,8 +77,16 @@ app.put('/articles/:id', (request, response) => {
   // DONE: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
   // This is part 3 of the full-stack-diagram. The server is querying the database in order to update the table. This functionality is called from updateRecord() in article.js, and is represented by UPDATE in CRUD.
 
-  let SQL = '';
-  let values = [];
+  let SQL = 'UPDATE articles SET title=$2, author=$3, "authorUrl"=$4, category=$5, "publishedOn"=$6, body=$7 WHERE article_id=$1;';
+  let values = [
+    request.params.id,
+    request.body.title,
+    request.body.author,
+    request.body.authorUrl,
+    request.body.category,
+    request.body.publishedOn,
+    request.body.body,
+  ];
 
   client.query( SQL, values )
     .then(() => {
@@ -109,7 +117,7 @@ app.delete('/articles', (request, response) => {
   // DONE: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
   // This is part 3 in the full-stack-diagram. The server is querying a deletion from the database. This interacts with truncateTable() in article.js. This is DELETE in CRUD.
 
-  let SQL = '';
+  let SQL = 'DROP TABLE articles;';
   client.query( SQL )
     .then(() => {
       response.send('Delete complete')
