@@ -11,8 +11,9 @@ const app = express();
 // const conString = 'postgres://USER:PASSWORD@HOST:PORT/DBNAME';
 
 // Mac:
-// const conString = 'postgres://localhost:5432';
+const conString = 'postgres://localhost:5432';
 
+const {client} = require('pg');
 const client = new pg.Client();
 
 // REVIEW: Use the client object to connect to our DB.
