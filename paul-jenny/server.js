@@ -39,7 +39,7 @@ app.get('/articles', (request, response) => {
   // This corresponds with #3 and #5 in the diagram - A query to the database, followed by an HTTP Response to the client once that data is received.
   // The Article.fetchAll method in article.js interacts with this piece of code.
   // This represents a READ operation within CRUD.
-  client.query('')
+  client.query(`SELECT * FROM articles;`)
     .then(function(result) {
       response.send(result.rows);
     })
@@ -65,7 +65,7 @@ app.post('/articles', (request, response) => {
     request.body.category,
     request.body.publishedOn,
     request.body.body
-  ]
+  ];
 
   client.query( SQL, values )
     .then(function() {
@@ -82,8 +82,17 @@ app.put('/articles/:id', (request, response) => {
   // The Article.prototype.updateRecord method in article.js interacts with this code.
   // This represents a UPDATE operation within CRUD.
 
-  let SQL = '';
-  let values = [];
+  let SQL = `UPDATE articles SET title=$1, author=$2, "authorUrl"=$3, category=$4, "publishedOn"=$5, body=$6 WHERE article_id=$7;`;
+
+  let values = [
+    request.body.title,
+    request.body.author,
+    request.body.authorUrl,
+    request.body.category,
+    request.body.publishedOn,
+    request.body.body,
+    request.params.id
+  ];
 
   client.query( SQL, values )
     .then(() => {
@@ -118,7 +127,7 @@ app.delete('/articles', (request, response) => {
   // The Article.truncateTable method within article.js interacts with this code.
   // This represents a DELETE operation within CRUD.
 
-  let SQL = '';
+  let SQL = `DELETE FROM articles`;
   client.query( SQL )
     .then(() => {
       response.send('Delete complete')

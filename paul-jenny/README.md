@@ -34,6 +34,12 @@ This application is a blog, which communicates with a local server via Node.js.
 
 05-17-2018 10:23am - Completed comment questions in server.js.
 
+05-17-2018 10:48am - Completed SQL query for app.get('/articles').
+
+05-17-2018 11:11am - Completed SQL queries within server.js - testing to ensure functionality.
+
+05-17-2018 12:02pm - Fixed error in SQL query for app.put('/articles/:id') - now article updates function properly.
+
 ## Credits and Collaborations
 
 * Oscar Otero - [JQuery Quick API Reference](https://oscarotero.com/jquery/)
