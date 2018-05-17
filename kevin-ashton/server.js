@@ -29,7 +29,7 @@ app.use(express.static('./public'));
 // REVIEW: Routes for requesting HTML resources
 app.get('/new-article', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js, if any, is interacting with this particular piece of `server.js`? What part of CRUD, if any, is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
+  // There is no link/route to this corresponding app,get('/new-article') to a method from article.js. This is the R in CRUD, which stands for READ.
   response.sendFile('new.html', {root: './public'});
 });
 
@@ -37,7 +37,7 @@ app.get('/new-article', (request, response) => {
 // REVIEW: Routes for making API calls to use CRUD Operations on our database
 app.get('/articles', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
+  // Article.fetchAll() is the method that is being used to interact with server.js. The R in CRUD is being enacted in this particular piece of code.
   client.query('SELECT * FROM articles')
     .then(function(result) {
       response.send(result.rows);
@@ -49,7 +49,7 @@ app.get('/articles', (request, response) => {
 
 app.post('/articles', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
+  // The method Article.prototype.insertRecord() is being used to interact with the server.js. The C in CRUD is being enacted by this particular piece of code.
   let SQL = `
     INSERT INTO articles(title, author, "authorUrl", category, "publishedOn", body)
     VALUES ($1, $2, $3, $4, $5, $6);
@@ -75,9 +75,9 @@ app.post('/articles', (request, response) => {
 
 app.put('/articles/:id', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
+  //Article.prototype.updateRecord is being used as the method to connect the interaction between article.js and server.js. That's the U in CRUD, which stands for UPDATE.
   
-  let SQL = `UPDATE articles SET (title, author, authorUrl, category, publishedOn, body) VALUES($1, $2, $3, $4, $5, $6) WHERE article_id=$7`;
+  let SQL = `UPDATE articles SET (title, author, "authorUrl", category, "publishedOn", body) VALUES($1, $2, $3, $4, $5, $6) WHERE article_id=$7`;
   let values = [
     request.body.title,
     request.body.author,
@@ -99,7 +99,7 @@ app.put('/articles/:id', (request, response) => {
 
 app.delete('/articles/:id', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
+  // Article.prototype.deleteRecord is the method being used to connect to the server.js. The D which stand for delete in CRUD is being enacted here by this particular piece of code.
 
   let SQL = `DELETE FROM articles WHERE article_id=$1;`;
   let values = [request.params.id];
@@ -115,9 +115,9 @@ app.delete('/articles/:id', (request, response) => {
 
 app.delete('/articles', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
+  // Article.prototype.deleteRecord is the interaction between both server.js and article.js. The D from CRUD stands for DELETE which is what we use in this particular code to get rid of unnesscary records.
 
-  let SQL = '';
+  let SQL = 'DELETE FROM article *';
   client.query( SQL )
     .then(() => {
       response.send('Delete complete');
@@ -128,7 +128,7 @@ app.delete('/articles', (request, response) => {
 });
 
 // COMMENT: What is this function invocation doing?
-// PUT YOUR RESPONSE HERE
+// Creates the table if it doesn't exist otherwise makes the table if it does exist and loads all existing data into the database.
 loadDB();
 
 app.listen(PORT, () => {
@@ -140,7 +140,7 @@ app.listen(PORT, () => {
 ////////////////////////////////////////
 function loadArticles() {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
+  //The method in article.js is called Article.loudAll, which is making the interaction with server.js by calling loadDB() and calling loadArticles(). The C in CRUD stands for CREATE which this particular piece of code is being enacted.
 
   let SQL = 'SELECT COUNT(*) FROM articles';
   client.query( SQL )
@@ -165,7 +165,7 @@ function loadArticles() {
 
 function loadDB() {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
+  // Just like the function above (loadArticles()) the loadDB function also is being called from Article.loadAll(). That's how this function is being called in serve.js. Also just like the function above, C in CRUD which stands for CREATE, is also being enacted here.
   client.query(`
     CREATE TABLE IF NOT EXISTS articles (
       article_id SERIAL PRIMARY KEY,
