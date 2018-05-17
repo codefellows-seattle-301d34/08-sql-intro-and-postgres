@@ -1,7 +1,7 @@
 # Kilovolt Blog
 
-**Author**: Ben Taylor, Tim "GB" Busch
-**Version**: 1.0.0 (increment the patch/fix version number up if you make more commits past your first submission)
+**Author**: Ben Taylor, Tim "GB" Busch  
+**Version**: 1.0.0
 
 ## Overview
 This is a blogging application that automatically sorts articles by publication date and allows users to add new articles without touching HTML.
@@ -21,13 +21,12 @@ Uses PostreSQL database system.
 Package management by NPM.
 
 ## Change Log
-05-17-2018 TIME - 
-05-15-2018 12:00pm - Application now loads article data from a json file.
+05-17-2018 12:30pm - Application now loads article data from a database.
 
 ## Credits and Collaborations
 **Anish Athalye** - [anishathalye](https://github.com/anishathalye/?normalize) for the normalize.css v3.0.2 | MIT License | [normalize](git.io/normalize)  
 **Icomoon** - [Icomoon](https://icomoon.io/)  
-**JQuery** - [JQuery](https://jquery.com/)
+**JQuery** - [JQuery](https://jquery.com/)  
 **Handlebars** - [Handlebars](http://handlebarsjs.com/)  
 **NPM** - [NPM](https://www.npmjs.com/)  
 **Express** - [Express](https://expressjs.com/)  
