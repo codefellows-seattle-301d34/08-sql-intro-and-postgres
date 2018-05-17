@@ -1,5 +1,6 @@
 'use strict';
 
+const pg = require('pg');
 const fs = require('fs');
 const express = require('express');
 
@@ -11,9 +12,9 @@ const app = express();
 // const conString = 'postgres://USER:PASSWORD@HOST:PORT/DBNAME';
 
 // Mac:
-// const conString = 'postgres://localhost:5432';
+const conString = 'postgres://localhost:5432';
 
-const client = new pg.Client();
+const client = new pg.Client(conString);
 
 // REVIEW: Use the client object to connect to our DB.
 client.connect();
@@ -37,13 +38,13 @@ app.get('/new-article', (request, response) => {
 app.get('/articles', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
   // PUT YOUR RESPONSE HERE
-  client.query('')
+  client.query('SELECT * FROM articles')
     .then(function(result) {
       response.send(result.rows);
     })
     .catch(function(err) {
-      console.error(err)
-    })
+      console.error(err);
+    });
 });
 
 app.post('/articles', (request, response) => {
@@ -61,11 +62,11 @@ app.post('/articles', (request, response) => {
     request.body.category,
     request.body.publishedOn,
     request.body.body
-  ]
+  ];
 
   client.query( SQL, values )
     .then(function() {
-      response.send('insert complete')
+      response.send('insert complete');
     })
     .catch(function(err) {
       console.error(err);
@@ -76,12 +77,12 @@ app.put('/articles/:id', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
   // PUT YOUR RESPONSE HERE
 
-  let SQL = '';
-  let values = [];
+  let SQL = `SELECT * FROM articles WHERE article_id=$1;`;
+  let values = [request.params.id];
 
   client.query( SQL, values )
     .then(() => {
-      response.send('update complete')
+      response.send('update complete');
     })
     .catch(err => {
       console.error(err);
@@ -97,7 +98,7 @@ app.delete('/articles/:id', (request, response) => {
 
   client.query( SQL, values )
     .then(() => {
-      response.send('Delete complete')
+      response.send('Delete complete');
     })
     .catch(err => {
       console.error(err);
@@ -111,7 +112,7 @@ app.delete('/articles', (request, response) => {
   let SQL = '';
   client.query( SQL )
     .then(() => {
-      response.send('Delete complete')
+      response.send('Delete complete');
     })
     .catch(err => {
       console.error(err);
@@ -148,10 +149,10 @@ function loadArticles() {
             `;
             let values = [ele.title, ele.author, ele.authorUrl, ele.category, ele.publishedOn, ele.body];
             client.query( SQL, values );
-          })
-        })
+          });
+        });
       }
-    })
+    });
 }
 
 function loadDB() {
