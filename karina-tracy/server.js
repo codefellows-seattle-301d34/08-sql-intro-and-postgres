@@ -37,9 +37,15 @@ app.get('/new-article', (request, response) => {
 // REVIEW: Routes for making API calls to use CRUD Operations on our database
 app.get('/articles', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
-  client.query('')
+  // This would be the READ portion of CRUD.
+  // app.get(/'articles...) corresponds with step 2
+  // client.query() corresponds with steps 3
+  // .then corresponds with step 4
+  // response.send(...) corresponds with step 5
+  console.log('request for articles from client');
+  client.query('SELECT * FROM articles;')
     .then(function(result) {
+      console.log('request for articles completed. Sending to client');
       response.send(result.rows);
     })
     .catch(function(err) {
