@@ -72,7 +72,7 @@ app.post('/articles', (request, response) => {
 
   client.query( SQL, values )
     .then(function() {
-      response.send('insert complete')
+      response.send('article insertion complete')
     })
     .catch(function(err) {
       console.error(err);
@@ -81,10 +81,24 @@ app.post('/articles', (request, response) => {
 
 app.put('/articles/:id', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
+  // app.put == diagram #2
+  // client.query (below) == diagram #3
+  // .then (below) == diagram #4
+  // response.send == diagram #5
+  // this piece of server is listening for requests from article.js method updateRecord()
+  // This would be the UPDATE part of CRUD.
 
-  let SQL = '';
-  let values = [];
+  let SQL = `\
+  UPDATE articles\
+  SET author = '${request.body.author}',\
+      title = '${request.body.title}',\
+      "authorUrl" = '${request.body.authorUrl}',\
+      category = '${request.body.category}',\
+      "publishedOn" = '${request.body.publishedOn}',\
+      body = '${request.body.body}'\
+  WHERE article_id = $1;`;
+  console.log('from update record:',SQL);
+  let values = [request.params.id];
 
   client.query( SQL, values )
     .then(() => {
