@@ -97,15 +97,21 @@ app.put('/articles/:id', (request, response) => {
 
   let SQL = `\
   UPDATE articles\
-  SET author = '${request.body.author}',\
-      title = '${request.body.title}',\
-      "authorUrl" = '${request.body.authorUrl}',\
-      category = '${request.body.category}',\
-      "publishedOn" = '${request.body.publishedOn}',\
-      body = '${request.body.body}'\
+  SET author = $2,\
+      title = $3,\
+      "authorUrl" = $4,\
+      category = $5,\
+      "publishedOn" = $6,\
+      body = $7\
   WHERE article_id = $1;`;
-  console.log('from update record:',SQL);
-  let values = [request.params.id];
+ 
+  let values = [request.params.id,
+  request.body.author,
+  request.body.title,
+  request.body.authorUrl,
+  request.body.category,
+  request.body.publishedOn,
+  request.body.body];
 
   client.query( SQL, values )
     .then(() => {
