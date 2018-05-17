@@ -39,7 +39,7 @@ app.get('/articles', (request, response) => {
   // This corresponds with #3 and #5 in the diagram - A query to the database, followed by an HTTP Response to the client once that data is received.
   // The Article.fetchAll method in article.js interacts with this piece of code.
   // This represents a READ operation within CRUD.
-  client.query('')
+  client.query(`SELECT * FROM articles;`)
     .then(function(result) {
       response.send(result.rows);
     })

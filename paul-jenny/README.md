@@ -34,6 +34,8 @@ This application is a blog, which communicates with a local server via Node.js.
 
 05-17-2018 10:23am - Completed comment questions in server.js.
 
+05-17-2018 10:48am - Completed SQL query for app.get('/articles').
+
 ## Credits and Collaborations
 
 * Oscar Otero - [JQuery Quick API Reference](https://oscarotero.com/jquery/)
