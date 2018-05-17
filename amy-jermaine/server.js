@@ -42,7 +42,7 @@ app.get( '/articles', ( request, response ) => {
       response.send( result.rows );
     } )
     .catch( function( err ) {
-      console.error( err )
+      console.error( err );
     } )
 } );
 
@@ -136,7 +136,6 @@ app.listen( PORT, () => {
 
 
 //////// ** DATABASE LOADER ** ////////
-////////////////////////////////////////
 function loadArticles() {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
   // This is 3 & 4 of the MVC Diagram. It is interacting with the loadDB function. This is the Create part of CRUD.
