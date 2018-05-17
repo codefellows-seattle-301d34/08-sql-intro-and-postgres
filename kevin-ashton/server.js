@@ -9,10 +9,10 @@ const app = express();
 
 // Windows and Linux users: You should have retained the user/password from the pre-work for this course.
 // Your OS may require that your conString is composed of additional information including user and password.
-// const conString = 'postgres://USER:PASSWORD@HOST:PORT/DBNAME';
+const conString = 'postgres://postgres:hyunwoo7@localhost:5433/';
 
 // Mac:
-const conString = 'postgres://localhost:5432';
+// const conString = 'postgres://localhost:5432';
 
 const client = new pg.Client(conString);
 
@@ -76,7 +76,6 @@ app.post('/articles', (request, response) => {
 app.put('/articles/:id', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
   //Article.prototype.updateRecord is being used as the method to connect the interaction between article.js and server.js. That's the U in CRUD, which stands for UPDATE.
-  
   let SQL = `UPDATE articles SET (title, author, "authorUrl", category, "publishedOn", body) VALUES($1, $2, $3, $4, $5, $6) WHERE article_id=$7`;
   let values = [
     request.body.title,

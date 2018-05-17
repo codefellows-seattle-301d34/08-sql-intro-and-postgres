@@ -23,6 +23,7 @@ Just download the source code and enjoy.
 ## Change Log
 -Wrote SQL query to get all the articles from database 
 -After gathering all information we specified gathering of data by grabbing updates of single article. 
+-Finished reading and commented. Understanding the connection base of article.js and server.js
 
 ## Credits and Collaborations
 * Oscar Otero - [JQuery Quick API Reference](https://oscarotero.com/jquery/)
