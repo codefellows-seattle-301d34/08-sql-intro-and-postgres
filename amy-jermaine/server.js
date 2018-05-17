@@ -74,7 +74,7 @@ app.post( '/articles', ( request, response ) => {
 
 app.put( '/articles/:id', ( request, response ) => {
   // COMMENTED: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // This is the Update part of Crud. We believe this is updateding the querey and array by clearing their contents.  This would be 3, 4, and 5 of the MVC Diagram. This is interacting with Article.prototype.updateRecord on article.js
+  // This is the Update part of Crud. We believe this is updating the query and array by replacing their contents.  This would be 3, 4, and 5 of the MVC Diagram. This is interacting with Article.prototype.updateRecord on article.js.
 
   let SQL = 'UPDATE articles SET author=$1, "authorUrl"=$2, body=$3, category=$4, "publishedOn"=$5, title=$6 WHERE article_id=$7;';
   let values = [
@@ -114,9 +114,9 @@ app.delete( '/articles/:id', ( request, response ) => {
 
 app.delete( '/articles', ( request, response ) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // This is interacting with the Article.truncateTable on articles.js. This is the Delete/Destroy part of CRUD. This is number 3 for the querey, 4 for the action, and 5 for the response of Delete complete.
+  // This is interacting with the Article.truncateTable on articles.js. This is the Delete/Destroy part of CRUD. This is number 3 for the query, 4 for the action, and 5 for the response of Delete complete.
 
-  let SQL = '';
+  let SQL = 'DELETE FROM articles;';
   client.query( SQL )
     .then( () => {
       response.send( 'Delete complete' )
