@@ -82,7 +82,7 @@ app.put('/articles/:id', (request, response) => {
   // The Article.prototype.updateRecord method in article.js interacts with this code.
   // This represents a UPDATE operation within CRUD.
 
-  let SQL = `UPDATE articles SET articles(title, author, "authorURL", category, "publishedOn", body) VALUES ($1, $2, $3, $4, $5, $6) WHERE article_id=$7`;
+  let SQL = `UPDATE articles SET title=$1, author=$2, "authorUrl"=$3, category=$4, "publishedOn"=$5, body=$6 WHERE article_id=$7;`;
 
   let values = [
     request.body.title,
