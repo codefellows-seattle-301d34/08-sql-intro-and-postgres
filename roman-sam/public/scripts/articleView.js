@@ -124,6 +124,8 @@ articleView.submit = event => {
 }
 
 articleView.initIndexPage = () => {
+  console.log('hi');
+  
   Article.all.forEach(article => {
     $('#articles').append(article.toHtml())
   });
