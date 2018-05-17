@@ -27,13 +27,12 @@ The new article should appear in the blog on page refresh.
 
 ### Update a record (PUT)
 
-In the browser console, inspect `Article.all[0]` and make note of the `author_id` and `article_id` for the Flibbity Jibbit article; you're going to need those in the next step.
+In the browser console, inspect `Article.all[0]` and make note of the `author_id` for the Flibbity Jibbit article; you're going to need those in the next step.
 
 Next, enter this in the console, making sure to put in the correct values you just noted:
 
 ```
 let updatedArticle = new Article({
-  author_id: ****number from the prior step****,
   article_id: ****number from the prior step****,
   title:'Bob',
   author:'Bob',
