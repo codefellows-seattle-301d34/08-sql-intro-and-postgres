@@ -1,0 +1,31 @@
+{
+  "name": "ben-gb-08",
+  "version": "1.0.0",
+  "description": "As we now complete our MVC conversation, we can refactor our app to use good MVC separation of concerns.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Code Fellows",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.3",
+    "node": "^10.0.0",
+    "pg": "^7.4.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/btaylor93/08-sql-intro-and-postgres.git"
+  },
+  "keywords": [
+    "sql",
+    "postgres",
+    "node",
+    "express"
+  ],
+  "bugs": {
+    "url": "https://github.com/btaylor93/08-sql-intro-and-postgres/issues"
+  },
+  "homepage": "https://github.com/btaylor93/08-sql-intro-and-postgres#readme"
+}
